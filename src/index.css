@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper font-body text-ink;
+}
+
+.grain {
+  background-image: radial-gradient(
+      circle at 25% 30%,
+      rgba(183, 123, 75, 0.12) 0,
+      transparent 45%
+    ),
+    radial-gradient(circle at 85% 15%, rgba(240, 220, 192, 0.8) 0, transparent 40%);
+}
+
+.bg-shift {
+  background-size: 180% 180%;
+  animation: bgShift 12s ease infinite;
+}
+
+.marquee-wrap {
+  overflow: hidden;
+  border: 1px solid rgba(45, 26, 18, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  animation: marqueeMove 19s linear infinite;
+}
+
+.marquee span {
+  border-radius: 999px;
+  background: rgba(183, 123, 75, 0.15);
+  color: #6a3e27;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.4rem 0.8rem;
+}
+
+@keyframes marqueeMove {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  border: 2px solid rgba(37, 211, 102, 0.5);
+  animation: pulseRing 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.85;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-shift,
+  .marquee,
+  .pulse-ring::after {
+    animation: none;
+  }
+}
