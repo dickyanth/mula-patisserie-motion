@@ -43,30 +43,59 @@ const menuItems = [
   {
     name: "Crepes Creme Brulee",
     tag: "Populer",
-    image:
-      "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/mula-real/menu-crepe-brulee.jpg",
     desc: "Crepes lembut dengan lapisan karamel manis dan aroma vanilla.",
   },
   {
     name: "Hojicha Latte",
     tag: "Best Seller",
-    image:
-      "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/mula-real/food-spread.jpg",
     desc: "Rasa roasted tea yang halus, creamy, dan comforting.",
   },
   {
     name: "Mula Signature Coffee",
     tag: "Signature",
-    image:
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/mula-real/brand-cups.jpg",
     desc: "Racikan kopi khas Mula dengan karakter bold dan seimbang.",
   },
   {
     name: "Burnt Cheese Cake",
     tag: "Populer",
-    image:
-      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/mula-real/menu-mochi.jpg",
     desc: "Cheesecake creamy dengan sentuhan burnt top yang khas.",
+  },
+];
+
+const cafePhotos = [
+  {
+    title: "Area Indoor",
+    desc: "Tempat duduk hangat dengan nuansa kayu dan pencahayaan lembut.",
+    image: "/images/mula-real/food-spread.jpg",
+  },
+  {
+    title: "Coffee Bar",
+    desc: "Sudut bar untuk signature coffee dan pastry harian.",
+    image: "/images/mula-real/brand-cups.jpg",
+  },
+  {
+    title: "Cozy Corner",
+    desc: "Spot santai buat nongkrong, kerja, atau quality time.",
+    image: "/images/mula-real/food-table.jpg",
+  },
+  {
+    title: "Dessert Display",
+    desc: "Pilihan pastry dan dessert fresh setiap hari.",
+    image: "/images/mula-real/menu-brownie.jpg",
+  },
+  {
+    title: "Ambience",
+    desc: "Vibes estetik yang cocok untuk foto dan konten.",
+    image: "/images/mula-real/menu-pinkstar.jpg",
+  },
+  {
+    title: "Pastry Time",
+    desc: "Menu manis favorit pelanggan Mula Patisserie.",
+    image: "/images/mula-real/menu-crepe-brulee.jpg",
   },
 ];
 
@@ -166,7 +195,7 @@ function MotionVisual() {
   return (
     <div className="relative h-[300px] overflow-hidden rounded-2xl border border-black/10 bg-[#f5e9d8] sm:h-[340px] lg:h-[420px]">
       <motion.img
-        src="https://images.unsplash.com/photo-1559622214-f8a9850965bb?auto=format&fit=crop&w=1400&q=80"
+        src="/images/mula-real/hero-main.jpg"
         alt="Mula Patisserie dessert"
         className="absolute inset-0 h-full w-full object-cover"
         animate={{ scale: [1, 1.08, 1], x: [0, -6, 0], y: [0, -8, 0] }}
@@ -213,7 +242,7 @@ function MotionVisual() {
       </motion.div>
 
       <motion.img
-        src="https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?auto=format&fit=crop&w=900&q=80"
+        src="/images/mula-real/menu-crepe-brulee.jpg"
         alt="Latte art"
         className="absolute bottom-20 left-6 h-20 w-20 rounded-xl border border-white/50 object-cover shadow-soft"
         animate={{ y: [0, -7, 0], rotate: [-2, 2, -2] }}
@@ -229,7 +258,7 @@ function MotionVisual() {
       </motion.div>
 
       <motion.img
-        src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=900&q=80"
+        src="/images/mula-real/menu-brownie.jpg"
         alt="Pastry showcase"
         className="absolute right-6 top-16 h-20 w-20 rounded-xl border border-white/50 object-cover shadow-soft"
         animate={{ y: [0, 6, 0], rotate: [2, -2, 2] }}
@@ -249,6 +278,9 @@ function Navbar() {
         <nav className="hidden items-center gap-6 text-sm font-semibold md:flex">
           <a href="#menu" className="transition hover:text-cocoa">
             Menu
+          </a>
+          <a href="#galeri" className="transition hover:text-cocoa">
+            Galeri
           </a>
           <a href="#layanan" className="transition hover:text-cocoa">
             Layanan
@@ -326,6 +358,53 @@ function Hero() {
           <span>Carbonara Pasta</span>
           <span>Chicken Nanban with Omelette</span>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function GallerySection() {
+  return (
+    <section id="galeri" className="px-4 py-14 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-6xl">
+        <SectionTitle
+          eyebrow="Galeri Cafe"
+          title="Foto suasana Mula Patisserie"
+          desc="Foto referensi Mula Patisserie dari sumber publik Batam (Trip/Lemon8), siap diganti dengan foto resmi owner."
+        />
+
+        <motion.div
+          variants={containerStagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.12 }}
+          className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {cafePhotos.map((item, index) => (
+            <motion.figure
+              key={item.title}
+              variants={itemFade}
+              whileHover={{ y: -6 }}
+              className={`group relative overflow-hidden rounded-2xl border border-black/5 bg-white shadow-soft ${
+                index === 0 || index === 4 ? "sm:col-span-2 lg:col-span-1" : ""
+              }`}
+            >
+              <motion.img
+                src={item.image}
+                alt={item.title}
+                className={`w-full object-cover transition duration-500 group-hover:scale-105 ${
+                  index % 3 === 0 ? "h-72" : "h-60"
+                }`}
+                loading="lazy"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+              <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                <p className="font-heading text-lg font-bold">{item.title}</p>
+                <p className="mt-1 text-sm text-white/85">{item.desc}</p>
+              </figcaption>
+            </motion.figure>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
@@ -562,6 +641,7 @@ export default function App() {
       <Hero />
       <QuickStats />
       <MenuSection />
+      <GallerySection />
       <ServicesSection />
       <ReviewsSection />
       <LocationSection />
